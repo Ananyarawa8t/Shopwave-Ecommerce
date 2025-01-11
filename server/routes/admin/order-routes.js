@@ -1,5 +1,5 @@
 const express = require("express");
-
+const  isAdmin = require("../../controllers/auth/isAdmin")
 const {
   getAllOrdersOfAllUsers,
   getOrderDetailsForAdmin,
@@ -8,8 +8,8 @@ const {
 
 const router = express.Router();
 
-router.get("/get", getAllOrdersOfAllUsers);
-router.get("/details/:id", getOrderDetailsForAdmin);
-router.put("/update/:id", updateOrderStatus);
+router.get("/get",isAdmin, getAllOrdersOfAllUsers);
+router.get("/details/:id",isAdmin, getOrderDetailsForAdmin);
+router.put("/update/:id",isAdmin, updateOrderStatus);
 
 module.exports = router;
